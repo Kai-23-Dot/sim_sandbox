@@ -14,7 +14,7 @@ class ArmConfig {
 
     // Tune to find these!
     private static final Slot0Configs SLOT_0_CONFIGS = new Slot0Configs()
-            .withKP(0)
+            .withKP(2)
             .withKI(0)
             .withKD(0)
             .withKG(0)

@@ -1,5 +1,7 @@
 package frc.robot.subsystems.elevator;
 
+import com.ctre.phoenix6.StatusCode;
+import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicTorqueCurrentFOC;
 import com.ctre.phoenix6.controls.NeutralOut;
@@ -8,6 +10,7 @@ import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.util.sim.PhysicsSim;
@@ -52,4 +55,13 @@ public class ElevatorSubsystem extends SubsystemBase implements SimulatableMecha
     public boolean getMagSwitch() {
         return !magSwitch.get();
     }
+
+    public Command moveElevator(double power) {
+        return new RunCommand(() -> primaryElevatorMotor.setControl(new DutyCycleOut(power)), this);
+    }
+
+    public StatusCode moveTo(Angle setpoint) {
+        return primaryElevatorMotor.setControl(magicRequest.withPosition(setpoint));
+    }
 }
+

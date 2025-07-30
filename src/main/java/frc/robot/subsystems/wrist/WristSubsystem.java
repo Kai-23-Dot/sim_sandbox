@@ -1,5 +1,6 @@
 package frc.robot.subsystems.wrist;
 
+import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -8,6 +9,8 @@ import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.sim.PhysicsSim;
 import frc.robot.util.sim.SimulatableMechanism;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 public class WristSubsystem extends SubsystemBase implements SimulatableMechanism {
     private final TalonFX wristMotor = new TalonFX(WristConfig.WRIST_KRAKEN_ID);
@@ -30,4 +33,11 @@ public class WristSubsystem extends SubsystemBase implements SimulatableMechanis
     public Angle getTargetPosition() {
         return Units.Rotations.of(wristMotor.getClosedLoopReference().getValue());
     }
+
+    public Command moveWrist(double power) {
+        return new RunCommand(() -> wristMotor.setControl(new DutyCycleOut(power)), this);
+    }
+
 }
+
+

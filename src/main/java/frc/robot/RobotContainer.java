@@ -28,6 +28,8 @@ import frc.robot.util.sim.Mechanisms;
 import frc.robot.util.sim.vision.AprilTagCamSim;
 import frc.robot.util.sim.vision.AprilTagCamSimBuilder;
 import frc.robot.util.sim.vision.AprilTagSimulator;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import java.util.List;
 
@@ -37,6 +39,9 @@ import java.util.List;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
+
+
+
 public class RobotContainer {
 
     // Pick Your Controller and Comment Out the Ones You Don't Use
@@ -47,6 +52,7 @@ public class RobotContainer {
     private final WristSubsystem wrist;
     public CommandSwerveDrivetrain drivetrain;
     private final AprilTagSubsystem[] aprilTagSubsystems;
+
 
     @Logged(name = "Vision/RadioCam")
     public final PhotonAprilTagSystem radioCam;
@@ -124,6 +130,9 @@ public class RobotContainer {
         mechanisms.updateElevatorArmMech(elevator.getCurrentPosition(), arm.getCurrentPosition());
     }
 
+
+
+
     /**
      * Use this method to define your trigger->command mappings. Triggers can be created via the
      * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
@@ -138,6 +147,16 @@ public class RobotContainer {
                 () -> drive.withVelocityX(-joystick.getY() * TunerConstants.kSpeedAt12Volts.magnitude())
                         .withVelocityY(-joystick.getX() * TunerConstants.kSpeedAt12Volts.magnitude())
                         .withRotationalRate(-joystick.getTwist() * TunerConstants.MaFxAngularRate)));
+        joystick.button(1).whileTrue(arm.moveArm(0.2));
+        joystick.button(2).whileTrue(arm.moveArm(-0.2));
+        joystick.button(3).whileTrue(elevator.moveElevator(0.2));
+        joystick.button(4).whileTrue(elevator.moveElevator(-0.2));
+        joystick.button(5).whileTrue(wrist.moveWrist(0.2));
+        joystick.button(6).whileTrue(wrist.moveWrist(-0.2));
+        joystick.button(7).whileTrue(wrist.moveWrist(0));
+        joystick.button(8).whileTrue(elevator.moveElevator(0));
+        joystick.button(9).whileTrue(arm.moveArm(0));
+
     }
 
     /**
@@ -149,3 +168,6 @@ public class RobotContainer {
         return null;
     }
 }
+
+
+
