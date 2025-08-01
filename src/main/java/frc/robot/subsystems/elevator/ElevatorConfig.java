@@ -27,8 +27,8 @@ class ElevatorConfig {
             .withMotionMagic(
                     // Tune to find these!
                     new MotionMagicConfigs()
-                            .withMotionMagicCruiseVelocity(0)
-                            .withMotionMagicAcceleration(0)
+                            .withMotionMagicCruiseVelocity(1)
+                            .withMotionMagicAcceleration(2)
                             .withMotionMagicJerk(0))
             .withMotorOutput(new MotorOutputConfigs()
                     .withInverted(InvertedValue.CounterClockwise_Positive)

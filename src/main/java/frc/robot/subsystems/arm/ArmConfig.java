@@ -14,10 +14,10 @@ class ArmConfig {
 
     // Tune to find these!
     private static final Slot0Configs SLOT_0_CONFIGS = new Slot0Configs()
-            .withKP(2)
+            .withKP(0)
             .withKI(0)
             .withKD(0)
-            .withKG(0)
+            .withKG(15)
             .withKV(0)
             .withKA(0)
             .withGravityType(GravityTypeValue.Arm_Cosine);
