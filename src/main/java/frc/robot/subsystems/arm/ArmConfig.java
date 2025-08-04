@@ -17,15 +17,15 @@ class ArmConfig {
             .withKP(0)
             .withKI(0)
             .withKD(0)
-            .withKG(15)
+            .withKG(25)
             .withKV(0)
-            .withKA(0)
+            .withKA(10)
             .withGravityType(GravityTypeValue.Arm_Cosine);
 
     // Tune to find these!
     static final MotionMagicConfigs motionMagicConfigs = new MotionMagicConfigs()
-            .withMotionMagicCruiseVelocity(0)
-            .withMotionMagicAcceleration(0)
+            .withMotionMagicCruiseVelocity(5)
+            .withMotionMagicAcceleration(5)
             .withMotionMagicJerk(0);
 
     static final TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()

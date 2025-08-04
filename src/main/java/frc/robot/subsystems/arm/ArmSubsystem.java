@@ -25,6 +25,7 @@ public class ArmSubsystem extends SubsystemBase implements SimulatableMechanism 
     private final MotionMagicTorqueCurrentFOC magicRequest = new MotionMagicTorqueCurrentFOC(0).withSlot(0);
     private final MotorController armMotor = new PWMSparkMax(0);
 
+
     private CANcoder armEncoder;
 
     public ArmSubsystem() {
